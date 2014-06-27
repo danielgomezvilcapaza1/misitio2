@@ -15,25 +15,15 @@ class IndexView (generic.ListView):
     def get_queryset(self):
         """ devuelve las ultimas 5 encuestas publicadas."""
         return Poll.objects.order_by('-pub_date')[:5]
-    #output = ', '.join([p.question for p in latest_poll_list])
-
-    #return render(request,'polls/index.html',context)
 
 class DetailView(generic.DetailView):
     model = Poll
     template_name = 'polls/detail.html'
-    #try:
-     #   poll = get_object_or_404(Poll,pk=poll_id)
-    #except Poll.DoesNotExist:
-     #   raise Http404
-    #return render(request,'polls/detail.html',{'poll':poll})
-
+  
 class ResultsView (generic.DetailView):
     model = Poll
     template_name = 'polls/results.html'
-   # poll = get_object_or_404(Poll, pk=poll_id)
-   # return render(request, 'polls/results.html',{'poll':poll})
-
+  
 def vote (request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
     try:
